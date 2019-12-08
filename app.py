@@ -8,11 +8,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    if "food_status" in request.form:
-        return render_template('food_status.html')
     return render_template('home.html')
 
-@app.route('/food_status')
+@app.route('/food_status', methods=['GET'])
 def food_status():
     db = get_db(DATABASE).cursor()
     fridge_contents = query_db(db, 'select * from fridge')
